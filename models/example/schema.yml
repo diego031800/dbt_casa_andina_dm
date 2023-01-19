@@ -30,3 +30,11 @@ models:
       - name: Provincia
       - name: Departamento
       - name: IdCliente
+
+  - name: dimTrabajador
+    description: "Dimension trabajador"
+    columns:
+      - name: keyTrabajador
+      - name: Trabajador
+      - name: Area
+      - name: IdTrabajador

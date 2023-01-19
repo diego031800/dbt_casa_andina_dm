@@ -7,3 +7,5 @@ sources:
     - name: DISTRITO
     - name: PROVINCIA
     - name: DEPARTAMENTO
+    - name: TRABAJADOR
+    - name: AREA

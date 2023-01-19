@@ -26,7 +26,7 @@ CLIENTE as (
     from {{ source('azure_sql_db_casa_andina_dbo', 'CLIENTE') }}
 )
 
-select 
+select distinct
     CLIENTE.Nombre as Cliente, 
     CLIENTE.Sexo as Genero,
     DISTRITO.Descripcion as Distrito, 
