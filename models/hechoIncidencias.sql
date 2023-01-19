@@ -44,7 +44,7 @@ h as (
     from {{ source('azure_sql_db_casa_andina_dbo', 'habitacion') }}
 )
 
-select 
+select distinct
     di.KeyIncidencia, 
     dh.KeyHabitacion, 
     dt.KeyTiempo, 

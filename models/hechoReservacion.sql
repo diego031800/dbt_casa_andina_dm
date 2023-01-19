@@ -44,7 +44,7 @@ r as (
     from {{ source('azure_sql_db_casa_andina_dbo', 'reservacion') }}
 )
 
-select 
+select distinct
     dh.KeyHabitacion, 
     dc.KeyCliente, 
     s.IdSede as KeySede, 
