@@ -11,8 +11,18 @@ sources:
     - name: area
     - name: reservacion
     - name: detalle_incidencia_habitacion
+    - name: detalle_habitacion_reserva
     - name: multitabla
     - name: habitacion
     - name: sede
     - name: adicional
     - name: incidencia
+  - name: dbo
+    tables:
+    - name: dimCliente
+    - name: dimAdicional
+    - name: dimHabitacion
+    - name: dimIncidencia
+    - name: dimSede
+    - name: dimTiempo
+    - name: dimTrabajador
