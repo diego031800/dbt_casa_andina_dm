@@ -9,3 +9,10 @@ sources:
     - name: departamento
     - name: trabajador
     - name: area
+    - name: reservacion
+    - name: detalle_incidencia_habitacion
+    - name: multitabla
+    - name: habitacion
+    - name: sede
+    - name: adicional
+    - name: incidencia

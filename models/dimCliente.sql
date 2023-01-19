@@ -27,12 +27,13 @@ cliente as (
 )
 
 select distinct
+    ROW_NUMBER() OVER (ORDER BY cliente.IdCliente) AS keyCliente,
     cliente.Nombre as Cliente, 
     cliente.Sexo as Genero,
     distrito.Descripcion as Distrito, 
     provincia.Descripcion as Provincia, 
 	departamento.Descripcion as Departamento, 
-    cliente.IdCliente
+    cliente.IdCliente as IdCliente
 from cliente
 inner join distrito using (IdDistrito)
 inner join provincia using (IdProvincia)
