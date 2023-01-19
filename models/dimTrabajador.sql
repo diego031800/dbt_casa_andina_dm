@@ -2,21 +2,21 @@
     materialized = "table"
 )}}
 
-with AREA AS (
+with area AS (
     select
         *
-    from {{ source('azure_sql_db_casa_andina_dbo','AREA') }}
+    from {{ source('azure_sql_db_casa_andina_dbo','area') }}
 ), 
 
-TRABAJADOR AS (
+trabajador AS (
     select
         *
-    from {{ source('azure_sql_db_casa_andina_dbo','TRABAJADOR') }}
+    from {{ source('azure_sql_db_casa_andina_dbo','trabajador') }}
 )
 
 select distinct 
-    CONCAT(TRABAJADOR.Nombre, ' ', TRABAJADOR.ApePaterno, ' ', TRABAJADOR.ApeMaterno) as Trabajador, 
-    AREA.Departamento as Area, 
-    TRABAJADOR.IdTrabajador as IdTrabajador
-from TRABAJADOR 
-inner join AREA using (IdArea)
+    CONCAT(trabajador.Nombre, ' ', trabajador.ApePaterno, ' ', trabajador.ApeMaterno) as Trabajador, 
+    area.Departamento as Area, 
+    trabajador.IdTrabajador as IdTrabajador
+from trabajador 
+inner join area using (IdArea)

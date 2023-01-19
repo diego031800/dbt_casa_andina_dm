@@ -2,38 +2,38 @@
     materialized = "table"
 )}}
 
-with DEPARTAMENTO as (
+with departamento as (
     select 
         *
-    from {{ source('azure_sql_db_casa_andina_dbo', 'DEPARTAMENTO') }}
+    from {{ source('azure_sql_db_casa_andina_dbo', 'departamento') }}
 ),
 
-PROVINCIA as (
+provincia as (
     select 
         *
-    from {{ source('azure_sql_db_casa_andina_dbo', 'PROVINCIA') }}
+    from {{ source('azure_sql_db_casa_andina_dbo', 'provincia') }}
 ),
 
-DISTRITO as (
+distrito as (
     select 
         *
-    from {{ source('azure_sql_db_casa_andina_dbo', 'DISTRITO') }}
+    from {{ source('azure_sql_db_casa_andina_dbo', 'distrito') }}
 ), 
 
-CLIENTE as (
+cliente as (
     select 
         *
-    from {{ source('azure_sql_db_casa_andina_dbo', 'CLIENTE') }}
+    from {{ source('azure_sql_db_casa_andina_dbo', 'cliente') }}
 )
 
 select distinct
-    CLIENTE.Nombre as Cliente, 
-    CLIENTE.Sexo as Genero,
-    DISTRITO.Descripcion as Distrito, 
-    PROVINCIA.Descripcion as Provincia, 
-	DEPARTAMENTO.Descripcion as Departamento, 
-    CLIENTE.IdCliente
-from CLIENTE
-inner join DISTRITO using (IdDistrito)
-inner join PROVINCIA using (IdProvincia)
-inner join DEPARTAMENTO using (IdDepartamento) 
+    cliente.Nombre as Cliente, 
+    cliente.Sexo as Genero,
+    distrito.Descripcion as Distrito, 
+    provincia.Descripcion as Provincia, 
+	departamento.Descripcion as Departamento, 
+    cliente.IdCliente
+from cliente
+inner join distrito using (IdDistrito)
+inner join provincia using (IdProvincia)
+inner join departamento using (IdDepartamento) 
