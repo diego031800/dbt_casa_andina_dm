@@ -12,6 +12,7 @@ sources:
     - name: reservacion
     - name: detalle_incidencia_habitacion
     - name: detalle_habitacion_reserva
+    - name: detalle_adicional_reservacion
     - name: multitabla
     - name: habitacion
     - name: sede
