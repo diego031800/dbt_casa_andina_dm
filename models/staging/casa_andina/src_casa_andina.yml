@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: azure_sql_db_casa_andina_dbo
+    tables:
+    - name: CLIENTE
+    - name: DISTRITO
+    - name: PROVINCIA
+    - name: DEPARTAMENTO

@@ -19,3 +19,14 @@ models:
         tests:
           - unique
           - not_null
+  
+  - name: dimCliente
+    description: "Dimension cliente"
+    columns:
+      - name: keyCliente
+      - name: Cliente
+      - name: Genero
+      - name: Distrito
+      - name: Provincia
+      - name: Departamento
+      - name: IdCliente
