@@ -5,31 +5,36 @@
 with r as (
     select
         *
-    from {{ source('azure_sql_db_casa_andina_dbo', 'reservacion') }}
+    from {{ source('casa_andina_dm_dbo', 'reservacion') }}
 ),
 
 dih as (
     select
         *
-    from {{ source('azure_sql_db_casa_andina_dbo', 'detalle_incidencia_habitacion') }}
+    from {{ source('casa_andina_dm_dbo', 'detalle_incidencia_habitacion') }}
+),
+
+dimTiempo as (
+    select distinct
+        EXTRACT( YEAR FROM r.fechaentrada) AS Anual,
+        CONCAT(EXTRACT(YEAR FROM r.fechaentrada), '-', IF(EXTRACT(MONTH FROM r.fechaentrada)<7, 'SEMESTRE 1','SEMESTRE 2')) AS Semestre,
+        CONCAT(EXTRACT(YEAR FROM r.fechaentrada), '-', EXTRACT(QUARTER FROM r.fechaentrada)) AS Trimestre,
+        CAST(r.fechaentrada AS STRING FORMAT 'MONTH') AS Mes,
+        EXTRACT(MONTH FROM r.fechaentrada) AS NroMes,
+        CAST(r.fechaentrada as date) AS IdFecha
+    from r
+    union distinct
+    select distinct
+        EXTRACT(YEAR FROM dih.fechareportada) AS Anual,
+        CONCAT(EXTRACT(YEAR FROM dih.fechareportada), '-', IF(EXTRACT(MONTH FROM dih.fechareportada)<7, 'SEMESTRE 1','SEMESTRE 2')) AS Semestre,
+        CONCAT(EXTRACT(YEAR FROM dih.fechareportada), '-', EXTRACT(QUARTER FROM dih.fechareportada)) AS Trimestre,
+        CAST(dih.fechareportada AS STRING FORMAT 'MONTH') AS Mes,
+        EXTRACT(MONTH FROM dih.fechareportada) AS NroMes,
+        CAST(dih.fechareportada as date) AS IdFecha
+    from dih
 )
 
-select distinct 
-    ROW_NUMBER() OVER (ORDER BY r.FechaEntrada) AS keyTiempo,
-    EXTRACT( YEAR FROM r.FechaEntrada) AS Anual,
-	CONCAT(EXTRACT(YEAR FROM r.FechaEntrada), '-', IF(EXTRACT(MONTH FROM r.FechaEntrada)<7, 'SEMESTRE 1','SEMESTRE 2')) AS Semestre,
-	CONCAT(EXTRACT(YEAR FROM r.FechaEntrada), '-', EXTRACT(QUARTER FROM r.FechaEntrada)) AS Trimestre,
-	EXTRACT(MONTH FROM r.FechaEntrada) AS Mes,
-	EXTRACT(MONTH FROM r.FechaEntrada) AS NroMes,
-	CAST(r.FechaEntrada as date) AS IdFecha
-from r
-/* union all
-(select distinct
-    ROW_NUMBER() OVER (ORDER BY dih.FechaReportada),
-    EXTRACT(YEAR FROM dih.FechaReportada),
-	CONCAT(EXTRACT(YEAR FROM dih.FechaReportada), '-', IF(EXTRACT(MONTH FROM dih.FechaReportada)<7, 'SEMESTRE 1','SEMESTRE 2')),
-	CONCAT(EXTRACT(YEAR FROM dih.FechaReportada), '-', EXTRACT(QUARTER dih.FechaReportada)),
-	EXTRACT(MONTH FROM  dih.FechaReportada),
-	EXTRACT(MONTH FROM dih.FechaReportada),
-	CAST(dih.FechaReportada as date)
-from dih) */
+select 
+    ROW_NUMBER() OVER (ORDER BY idFecha) AS keyTiempo,
+    *
+from dimTiempo

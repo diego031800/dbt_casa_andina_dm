@@ -5,13 +5,13 @@
 with area AS (
     select
         *
-    from {{ source('azure_sql_db_casa_andina_dbo','area') }}
+    from {{ source('casa_andina_dm_dbo','area') }}
 ), 
 
 trabajador AS (
     select
         *
-    from {{ source('azure_sql_db_casa_andina_dbo','trabajador') }}
+    from {{ source('casa_andina_dm_dbo','trabajador') }}
 )
 
 select distinct 

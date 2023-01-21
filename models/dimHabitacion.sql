@@ -5,13 +5,13 @@
 with h as (
     select
         *
-    from {{ source('azure_sql_db_casa_andina_dbo', 'habitacion') }}
+    from {{ source('casa_andina_dm_dbo', 'habitacion') }}
 ),
 
 th as (
     select
         *
-    from {{ source('azure_sql_db_casa_andina_dbo', 'multitabla') }}
+    from {{ source('casa_andina_dm_dbo', 'multitabla') }}
 )
 
 select distinct

@@ -5,13 +5,13 @@
 with s as (
     select 
         *
-    from {{ source('azure_sql_db_casa_andina_dbo','sede') }}
+    from {{ source('casa_andina_dm_dbo','sede') }}
 ),
 
 ts as (
     select 
         *
-    from {{ source('azure_sql_db_casa_andina_dbo','multitabla') }}
+    from {{ source('casa_andina_dm_dbo','multitabla') }}
 )
 
 select distinct
@@ -20,4 +20,4 @@ select distinct
     ts.nombre as Categoria,
     s.IdSede as IdSede,
 from s
-inner join ts on ts.valor = s.IdTipoSede
+inner join ts on ts.valor = s.IdTipoSede and ts.IdTabla = '0001'

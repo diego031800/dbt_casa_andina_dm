@@ -5,13 +5,13 @@
 with a as(
     select 
         *
-    from {{ source('azure_sql_db_casa_andina_dbo', 'adicional') }}
+    from {{ source('casa_andina_dm_dbo', 'adicional') }}
 ),
 
 sa as (
     select 
         *
-    from {{ source('azure_sql_db_casa_andina_dbo', 'multitabla') }}
+    from {{ source('casa_andina_dm_dbo', 'multitabla') }}
 )
 
 select

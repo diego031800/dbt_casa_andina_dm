@@ -5,43 +5,43 @@
 with dr as (
     select 
         *
-    from {{ source('azure_sql_db_casa_andina_dbo', 'detalle_habitacion_reserva') }}
+    from {{ source('casa_andina_dm_dbo', 'detalle_habitacion_reserva') }}
 ),
 
 dh as (
     select 
         *
-    from {{ source('dbo', 'dimHabitacion') }}
+    from {{ source('ca_data_mart', 'dimHabitacion') }}
 ),
 
 dc as (
     select 
         *
-    from {{ source('dbo', 'dimCliente') }}
+    from {{ source('ca_data_mart', 'dimCliente') }}
 ),
 
 dt as (
     select 
         *
-    from {{ source('dbo', 'dimTiempo') }}
+    from {{ source('ca_data_mart', 'dimTiempo') }}
 ),
 
 s as (
     select 
         *
-    from {{ source('azure_sql_db_casa_andina_dbo', 'sede') }}
+    from {{ source('casa_andina_dm_dbo', 'sede') }}
 ),
 
 h as (
     select 
         *
-    from {{ source('azure_sql_db_casa_andina_dbo', 'habitacion') }}
+    from {{ source('casa_andina_dm_dbo', 'habitacion') }}
 ),
 
 r as (
     select 
         *
-    from {{ source('azure_sql_db_casa_andina_dbo', 'reservacion') }}
+    from {{ source('casa_andina_dm_dbo', 'reservacion') }}
 )
 
 select distinct

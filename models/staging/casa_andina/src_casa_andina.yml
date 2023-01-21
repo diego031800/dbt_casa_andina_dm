@@ -1,7 +1,7 @@
 version: 2
 
 sources:
-  - name: azure_sql_db_casa_andina_dbo
+  - name: casa_andina_dm_dbo
     tables:
     - name: cliente
     - name: distrito
@@ -18,7 +18,7 @@ sources:
     - name: sede
     - name: adicional
     - name: incidencia
-  - name: dbo
+  - name: ca_data_mart
     tables:
     - name: dimCliente
     - name: dimAdicional
