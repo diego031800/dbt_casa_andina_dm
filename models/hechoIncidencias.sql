@@ -11,25 +11,25 @@ with dih as (
 dh as (
     select 
         *
-    from {{ source('ca_data_mart', 'dimHabitacion') }}
+    from {{ source('dm', 'dimHabitacion') }}
 ),
 
 di as (
     select 
         *
-    from {{ source('ca_data_mart', 'dimIncidencia') }}
+    from {{ source('dm', 'dimIncidencia') }}
 ),
 
 dt as (
     select 
         *
-    from {{ source('ca_data_mart', 'dimTiempo') }}
+    from {{ source('dm', 'dimTiempo') }}
 ),
 
 dtt as (
     select 
         *
-    from {{ source('ca_data_mart', 'dimTrabajador') }}
+    from {{ source('dm', 'dimTrabajador') }}
 ),
 
 s as (

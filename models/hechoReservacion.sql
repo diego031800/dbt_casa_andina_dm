@@ -11,19 +11,19 @@ with dr as (
 dh as (
     select 
         *
-    from {{ source('ca_data_mart', 'dimHabitacion') }}
+    from {{ source('dm', 'dimHabitacion') }}
 ),
 
 dc as (
     select 
         *
-    from {{ source('ca_data_mart', 'dimCliente') }}
+    from {{ source('dm', 'dimCliente') }}
 ),
 
 dt as (
     select 
         *
-    from {{ source('ca_data_mart', 'dimTiempo') }}
+    from {{ source('dm', 'dimTiempo') }}
 ),
 
 s as (

@@ -18,7 +18,7 @@ sources:
     - name: sede
     - name: adicional
     - name: incidencia
-  - name: ca_data_mart
+  - name: dm
     tables:
     - name: dimCliente
     - name: dimAdicional
