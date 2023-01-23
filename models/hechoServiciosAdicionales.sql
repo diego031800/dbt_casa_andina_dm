@@ -44,7 +44,7 @@ r as (
     from {{ source('casa_andina_dm_dbo', 'reservacion') }}
 )
 
-select distinct
+select
     da.KeyAdicional, 
     dc.KeyCliente, 
     s.IdSede as KeySede, 

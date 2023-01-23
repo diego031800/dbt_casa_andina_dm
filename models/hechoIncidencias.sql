@@ -44,7 +44,7 @@ h as (
     from {{ source('casa_andina_dm_dbo', 'habitacion') }}
 )
 
-select distinct
+select
     di.KeyIncidencia, 
     dh.KeyHabitacion, 
     dt.KeyTiempo, 
